@@ -9,7 +9,7 @@ function Category() {
     <>
       <div className="p-2 bg-violet-600 relative">
         <img src={image1} alt='' className="opacity-[0.50] w-full" />
-        <p className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white uppercase text-[30px]">
+        <p className="absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] text-white uppercase text-[20px]">
           {category}'s Category
         </p>
       </div>
