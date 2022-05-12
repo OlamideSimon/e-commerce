@@ -1,84 +1,67 @@
-import image1 from "../images/image1.png";
+import React, { useEffect, useState } from 'react'
+import image1 from "../images/test.svg";
 import { Button } from "@mui/material";
 import ProductCards from "../component/ProductCards";
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase';
 
 function Home() {
+  const [products, setProducts] = useState<any>([])
+
+    useEffect(() => 
+      onSnapshot(
+        query(
+          collection(db, 'products'),
+          orderBy('timestamp'),
+        ), (snapshot) => {
+          setProducts(snapshot.docs)
+        }
+      )
+    , [])
+
   return (
     <>
-      <div className="flex justify-between items-center bg-violet-600 p-10">
-        <div className="sm:w-72 md:w-96 bg-hero bg-cover sm:bg-none text-left text-white space-y-5 text-2xl font-extralight">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro
-            cumque recusandae deserunt magnam eaque quae incidunt, natus ullam
-            eius voluptatem rem ad aliquam quaerat nemo ratione, quia, ducimus
-            saepe accusantium.
-          </p>
-          <div className="flex justify-between sm:w-64">
-            <Button
-              variant="contained"
-              size="small"
-              sx={{ backgroundColor: "white", color: "purple" }}
-            >
-              Shop Now
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              sx={{ backgroundColor: "white", color: "purple" }}
-            >
-              Contact Us
-            </Button>
+      <div className="sm:flex pt-20 space-y-4 sm:space-y-0 p-4 md:pl-24 justify-evenly">
+        <div className="sm:w-1/2 space-y-6">
+          <div className="space-y-3">
+            <p className="text-slate-300 uppercase italic text-sm">No.1 E-commerce store</p>
+            <p className="text-white text-5xl w-4/6 capitalize">The value of the shopping world.</p>
+          </div>
+          <div className="w-5/6 text-white">
+            <p>
+              Lorem ipsum dolor sit amet consectetur 
+              adipisicing elit. Quam tenetur, 
+              consequatur aspernatur necessitatibus
+              explicabo perspiciatis similique dignissimos 
+              ex, sapiente quas, rerum possimus commodi 
+              sint debitis a quae? Placeat, atque dicta?
+            </p>
+          </div>
+          <div className="space-x-5">
+            <Button variant='contained' sx={{backgroundColor: 'white', color: '#04619f'}}>Shop Now</Button>
+            <Button variant='contained' sx={{backgroundColor: '#36454f'}}>Know about us</Button>
           </div>
         </div>
-        <div className="invisible w-0 sm:w-72 md:w-auto sm:visible">
-          <img src={image1} alt="" />
+        <div className="sm:w-1/2">
+          <img src={image1} draggable={false} width={500} alt='' className='shrink' />
         </div>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 p-10 gap-3">
-        <div className="shadow-lg shadow-[#1c0c4e] bg-[#1c0c4e] p-5 text-center mt-2 text-white rounded-lg">
-          <p className="text-center font-bold mb-3">Why Shop with us</p>
-          <p className="text-left font-thin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            cupiditate harum, temporibus Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Tenetur cupiditate harum, temporibus
-          </p>
+      <div>
+        <div className="flex p-10 justify-center text-[#dc143c] uppercase">
+          <p className="border-b-[#dc143c] border-b-2 underline underline-offset-4">Our Latest Products</p>
         </div>
-        <div className="shadow-lg shadow-[#302384] bg-[#302384] p-5 text-center mt-2 text-white rounded-lg">
-          <p className="text-center font-bold mb-3">What we offer</p>
-          <p className="text-left font-thin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            cupiditate harum, temporibus Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Tenetur cupiditate harum, temporibus
-          </p>
-        </div>
-        <div className="shadow-lg shadow-[#1c0c4e] bg-[#1c0c4e] p-5 text-center mt-2 text-white rounded-lg">
-          <p className="text-center font-bold mb-3">Why Shop with us</p>
-          <p className="text-left font-thin">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-            cupiditate harum, temporibus Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Tenetur cupiditate harum, temporibus
-          </p>
-        </div>
-      </div>
-
-      <div className="space-y-5">
-        <div>
-          <div className="text-slate-500 text-center border-b-2">
-            <p>Products</p>
-          </div>
-          <div className="text-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-5 gap-3">
-            <ProductCards />
-            <ProductCards />
-          </div>
-        </div>
-        <div>
-          <div className="text-slate-500 text-center border-b-2">
-            <p>Latest Stocks</p>
-          </div>
-          <div className="text-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-5 gap-3">
-            <ProductCards />
-          </div>
+        <div className="sm:p-2 grid md:grid-cols-2 gap-3">
+          {products.map((product: any) => (
+            <ProductCards 
+              key={product.id}
+              img={product.data().image}
+              details={product.data().details}
+              description={product.data().description}
+              gender={product.data().gender}
+              price={product.data().price}
+              title={product.data().title}
+            />
+          ))}
         </div>
       </div>
     </>

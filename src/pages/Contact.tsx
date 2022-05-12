@@ -1,30 +1,36 @@
 import { Button } from '@mui/material'
 import contact from '../images/contact.png'
 import logo from '../images/logo.png'
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import EmailIcon from '@mui/icons-material/Email';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 
 function Contact() {
   return (
     <>
-      <div className='flex items-center justify-between bg-violet-600 text-center text-white'>
+      <div className='flex items-center justify-between bg-[#2c3e50] text-center text-white'>
         <div className='text-center text-lg bg-hero2 p-20 sm:p-0 bg-cover sm:bg-none w-full sm:w-1/2'>
           <p className='uppercase mx-10 font-medium'>Reach out to us</p>
         </div>
         <div className='w-0 sm:w-1/2 invisible sm:visible'>
-          <img src={contact} alt='' className='opacity-70 rounded-l-full w-full md:h-96' />
+          <img src={contact} alt='' className='rounded-l-full w-full md:h-96' />
         </div>
       </div>
 
       <div className='p-16 space-y-10'>
         <div className='grid grid-cols-1 sm:grid-cols-3 gap-4'>
           <div className='text-center bg-slate-100 rounded-3xl p-2'>
+            <LocationOnIcon fontSize='large' />
             <p className='font-semibold text-[13px] uppercase'>Location</p>
             <p className='text-sm font-light'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorum quibusdam</p>
           </div>
           <div className='text-center bg-slate-100 rounded-3xl p-2'>
+            <EmailIcon fontSize='large' />
             <p className='font-semibold text-[13px] uppercase'>Email Address</p>
             <p className='text-sm font-light'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorum quibusdam</p>
           </div>
           <div className='text-center bg-slate-100 rounded-3xl p-2'>
+            <ContactPhoneIcon fontSize='large' />
             <p className='font-semibold text-[13px] uppercase'>Phone Number</p>
             <p className='text-sm font-light'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate dolorum quibusdam</p>
           </div>

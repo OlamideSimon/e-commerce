@@ -5,10 +5,10 @@ function About() {
     <>
       <div className='bg-gradient-to-r from-sky-500 to-violet-600 text-center py-14 text-white'>
         <p className='uppercase text-[20px] font-bold'>
-          Welcome to ShopHere
+          Welcome to AlphaStore
         </p>
       </div>
-      <div className='p-10 sm:p-20 space-y-7 text-base font-light'>
+      <div className='text-white p-10 sm:p-20 space-y-7 text-base font-light'>
         <p>
           We aim to offer our customers a variety of the latest 
           Fashion trends. We've come a long way, so we know exactly 
